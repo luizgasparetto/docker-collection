@@ -21,11 +21,11 @@ FROM base As build
 WORKDIR /usr/src/app
 
 COPY --chown=node:node --from=dev /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node . .
+COPY --chown=node:node --from=dev . .
 
 RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
-  npm install --omit=dev
+  npm install && npm run build
 
 RUN npm cache clean --force
 
@@ -35,8 +35,8 @@ USER node
 
 FROM base As production
 
-ARG port
-ENV PORT ${port}
+ARG PORT
+ENV PORT ${PORT:-3000}
 
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
