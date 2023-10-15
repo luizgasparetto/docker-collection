@@ -1,17 +1,20 @@
 #!/bin/sh
 
-IMAGE_NAME="collection.alpine.node"
-BUILD_PATH="../.."
-DEFAULT_PORT=3000
+declare -A image_config
+image_config=(
+  [name]="collection.alpine.node"
+  [build_path]="../.."
+  [default_port]=3000
+)
 
 if [ -f .env ]; then
   export $(cat .env | grep PORT | xargs)
 fi
 
 if [ -z ${PORT+x} ]; then
-  PORT=$DEFAULT_PORT
+  PORT=${image_config.default_port}
 fi
 
 docker build \
 --build-arg PORT=$PORT \
--t $IMAGE_NAME $BUILD_PATH
+-t ${image_config.name} ${image_config.build_path}
