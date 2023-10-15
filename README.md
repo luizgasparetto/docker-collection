@@ -10,5 +10,8 @@ This repository contains a collection of Dockerfiles, Docker Compose files, and 
 ## Contribution
 If you wish to contribute to this repository, please feel free to send a pull request. If you have any questions or suggestions, don't hesitate to open an issue.
 
+## Continuous Updates and Contribution
+This repository is continuously updated and maintained. If you wish to contribute to this repository, please feel free to send a pull request. Whether it's a bug fix, an enhancement, or new content, your contributions are highly appreciated.
+
 ## License
 This project is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
