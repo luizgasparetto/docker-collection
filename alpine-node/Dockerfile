@@ -3,7 +3,7 @@ FROM node:18-alpine as base
 
 # DEV
 
-FROM base As dev
+FROM base AS dev
 
 WORKDIR /usr/src/app
 
@@ -16,7 +16,7 @@ USER node
 
 # BUILD
 
-FROM base As build
+FROM base AS build
 
 WORKDIR /usr/src/app
 
@@ -33,7 +33,7 @@ USER node
 
 # PRODUCTION
 
-FROM base As production
+FROM base AS production
 
 ARG PORT
 ENV PORT ${PORT:-3000}
