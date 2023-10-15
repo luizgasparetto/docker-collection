@@ -1,10 +1,9 @@
 FROM nginx:alpine
 
-ARG HTTP_PORT
-ARG HTTPS_PORT
+ARG HTTP_PORT HTTPS_PORT
 
-ENV HTTP_PORT=${HTTP_PORT:-80}
-ENV HTTPS_PORT=${HTTPS_PORT:-443}
+ENV HTTP_PORT=${HTTP_PORT:-80} \
+  HTTPS_PORT=${HTTPS_PORT:-443}
 
 COPY --chown=nginx:nginx ./infrastructure/config/nginx.conf /etc/nginx/nginx.conf
 
