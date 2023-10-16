@@ -1,8 +1,9 @@
 #!/bin/sh
 
 declare -A image_config
+
 image_config=(
-  [name]="collection.alpine.node"
+  [tag]="node:collection"
   [build_path]="../.."
   [default_port]=3000
 )
@@ -17,4 +18,4 @@ fi
 
 docker build \
 --build-arg PORT=$PORT \
--t ${image_config.name} ${image_config.build_path}
+-t ${image_config.tag} ${image_config.build_path}
