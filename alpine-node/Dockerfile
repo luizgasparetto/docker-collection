@@ -1,4 +1,3 @@
-
 FROM node:18-alpine as base
 
 # DEV
@@ -20,14 +19,10 @@ FROM base AS build
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node --from=dev /usr/src/app/node_modules ./node_modules
-COPY --chown=node:node --from=dev . .
+COPY --chown=node:node --from=dev /usr/src/app/package.json .
+COPY --chown=node:node . .
 
-RUN --mount=type=cache,target=/usr/src/app/.npm \
-  npm set cache /usr/src/app/.npm && \
-  npm install && npm run build
-
-RUN npm cache clean --force
+RUN npm install && npm run build 
 
 USER node
 
@@ -46,3 +41,4 @@ USER node
 EXPOSE $PORT
 
 CMD [ "node", "dist/src/main.js" ]
+
